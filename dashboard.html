@@ -1,9 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard Controlei</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .graficos-container {
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .grafico-box {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 50%;
+    }
+    h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  </style>
 </head>
 <body>
   <div>
@@ -11,6 +32,19 @@
     <span id="totalDespesas">1200</span>
     <span id="saldoGeral">1300</span>
   </div>
+
+  <div class="graficos-container">
+    <div class="grafico-box">
+      <h3>Despesas por Categoria</h3>
+      <canvas id="graficoPizza"></canvas>
+    </div>
+    <div class="grafico-box">
+      <h3>Evolução Financeira</h3>
+      <canvas id="graficoLinha"></canvas>
+    </div>
+  </div>
+
   <script src="dashboard-controller.js"></script>
+  <script src="/dashboard-graficos.js"></script>
 </body>
 </html>
