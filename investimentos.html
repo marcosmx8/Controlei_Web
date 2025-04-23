@@ -1,0 +1,350 @@
+<!-- Seção de Investimentos -->
+<div id="investimentos" class="content-section">
+    <h2>Investimentos</h2>
+    
+    <!-- Filtros -->
+    <div class="filter-section row mb-4">
+        <div class="col-md-4">
+            <label for="filtroTipoInvestimento" class="form-label">Tipo de Investimento</label>
+            <select class="form-select" id="filtroTipoInvestimento">
+                <option value="todos" selected>Todos</option>
+                <option value="renda_fixa">Renda Fixa</option>
+                <option value="renda_variavel">Renda Variável</option>
+                <option value="fundos">Fundos de Investimento</option>
+                <option value="cripto">Criptomoedas</option>
+                <option value="outros">Outros</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="filtroRentabilidade" class="form-label">Rentabilidade</label>
+            <select class="form-select" id="filtroRentabilidade">
+                <option value="todos" selected>Todos</option>
+                <option value="positiva">Positiva</option>
+                <option value="negativa">Negativa</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="filtroPeriodo" class="form-label">Período</label>
+            <select class="form-select" id="filtroPeriodo">
+                <option value="1m">Último mês</option>
+                <option value="3m">Últimos 3 meses</option>
+                <option value="6m">Últimos 6 meses</option>
+                <option value="1a" selected>Último ano</option>
+                <option value="total">Total</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Botão para adicionar novo investimento -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovoInvestimento">
+                <i class="bi bi-plus-circle"></i> Novo Investimento
+            </button>
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalNovaOperacao">
+                <i class="bi bi-arrow-left-right"></i> Nova Operação
+            </button>
+        </div>
+    </div>
+    
+    <!-- Resumo dos investimentos -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Patrimônio Total</h5>
+                    <h2 class="card-value text-primary">R$ 85.750,00</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rentabilidade Média</h5>
+                    <h2 class="card-value text-success">+12,5%</h2>
+                    <p class="card-text">Últimos 12 meses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rendimentos</h5>
+                    <h2 class="card-value text-success">R$ 9.580,00</h2>
+                    <p class="card-text">Últimos 12 meses</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Proventos</h5>
+                    <h2 class="card-value text-success">R$ 1.850,00</h2>
+                    <p class="card-text">Últimos 12 meses</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráficos de análise dos investimentos -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Distribuição por Tipo</h5>
+                    <div class="chart-container">
+                        <canvas id="distribuicaoInvestimentosChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Evolução do Patrimônio</h5>
+                    <div class="chart-container">
+                        <canvas id="evolucaoPatrimonioChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tabela de investimentos -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Meus Investimentos</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ativo</th>
+                                    <th>Tipo</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço Médio</th>
+                                    <th>Preço Atual</th>
+                                    <th>Valor Investido</th>
+                                    <th>Valor Atual</th>
+                                    <th>Rentabilidade</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tesouro IPCA+ 2035</td>
+                                    <td>Renda Fixa</td>
+                                    <td>1</td>
+                                    <td>R$ 25.000,00</td>
+                                    <td>R$ 27.500,00</td>
+                                    <td>R$ 25.000,00</td>
+                                    <td>R$ 27.500,00</td>
+                                    <td><span class="text-success">+10,0%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CDB Banco XYZ</td>
+                                    <td>Renda Fixa</td>
+                                    <td>1</td>
+                                    <td>R$ 15.000,00</td>
+                                    <td>R$ 16.200,00</td>
+                                    <td>R$ 15.000,00</td>
+                                    <td>R$ 16.200,00</td>
+                                    <td><span class="text-success">+8,0%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PETR4</td>
+                                    <td>Renda Variável</td>
+                                    <td>200</td>
+                                    <td>R$ 32,50</td>
+                                    <td>R$ 38,75</td>
+                                    <td>R$ 6.500,00</td>
+                                    <td>R$ 7.750,00</td>
+                                    <td><span class="text-success">+19,2%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>VALE3</td>
+                                    <td>Renda Variável</td>
+                                    <td>150</td>
+                                    <td>R$ 68,00</td>
+                                    <td>R$ 72,00</td>
+                                    <td>R$ 10.200,00</td>
+                                    <td>R$ 10.800,00</td>
+                                    <td><span class="text-success">+5,9%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fundo Imobiliário XP</td>
+                                    <td>Fundos</td>
+                                    <td>500</td>
+                                    <td>R$ 20,00</td>
+                                    <td>R$ 23,00</td>
+                                    <td>R$ 10.000,00</td>
+                                    <td>R$ 11.500,00</td>
+                                    <td><span class="text-success">+15,0%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bitcoin</td>
+                                    <td>Criptomoedas</td>
+                                    <td>0,25</td>
+                                    <td>R$ 48.000,00</td>
+                                    <td>R$ 48.000,00</td>
+                                    <td>R$ 12.000,00</td>
+                                    <td>R$ 12.000,00</td>
+                                    <td><span class="text-warning">0,0%</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm btn-outline-info"><i class="bi bi-graph-up"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Novo Investimento -->
+<div class="modal fade" id="modalNovoInvestimento" tabindex="-1" aria-labelledby="modalNovoInvestimentoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNovoInvestimentoLabel">Novo Investimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNovoInvestimento">
+                    <div class="mb-3">
+                        <label for="nomeAtivo" class="form-label">Nome do Ativo</label>
+                        <input type="text" class="form-control" id="nomeAtivo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipoInvestimento" class="form-label">Tipo de Investimento</label>
+                        <select class="form-select" id="tipoInvestimento" required>
+                            <option value="">Selecione...</option>
+                            <option value="renda_fixa">Renda Fixa</option>
+                            <option value="renda_variavel">Renda Variável</option>
+                            <option value="fundos">Fundos de Investimento</option>
+                            <option value="cripto">Criptomoedas</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantidade" class="form-label">Quantidade</label>
+                        <input type="number" class="form-control" id="quantidade" step="0.000001" min="0.000001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precoMedio" class="form-label">Preço Médio (R$)</label>
+                        <input type="number" class="form-control" id="precoMedio" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataCompra" class="form-label">Data da Compra</label>
+                        <input type="date" class="form-control" id="dataCompra" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="corretora" class="form-label">Corretora/Instituição</label>
+                        <input type="text" class="form-control" id="corretora">
+                    </div>
+                    <div class="mb-3">
+                        <label for="observacaoInvestimento" class="form-label">Observação</label>
+                        <textarea class="form-control" id="observacaoInvestimento" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarInvestimento">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Nova Operação -->
+<div class="modal fade" id="modalNovaOperacao" tabindex="-1" aria-labelledby="modalNovaOperacaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNovaOperacaoLabel">Nova Operação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNovaOperacao">
+                    <div class="mb-3">
+                        <label for="ativoOperacao" class="form-label">Ativo</label>
+                        <select class="form-select" id="ativoOperacao" required>
+                            <option value="">Selecione...</option>
+                            <option value="tesouro_ipca">Tesouro IPCA+ 2035</option>
+                            <option value="cdb_xyz">CDB Banco XYZ</option>
+                            <option value="petr4">PETR4</option>
+                            <option value="vale3">VALE3</option>
+                            <option value="fundo_xp">Fundo Imobiliário XP</option>
+                            <option value="bitcoin">Bitcoin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipoOperacao" class="form-label">Tipo de Operação</label>
+                        <select class="form-select" id="tipoOperacao" required>
+                            <option value="">Selecione...</option>
+                            <option value="compra">Compra</option>
+                            <option value="venda">Venda</option>
+                            <option value="dividendo">Dividendo/Provento</option>
+                            <option value="jcp">JCP</option>
+                            <option value="rendimento">Rendimento</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantidadeOperacao" class="form-label">Quantidade</label>
+                        <input type="number" class="form-control" id="quantidadeOperacao" step="0.000001" min="0.000001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precoOperacao" class="form-label">Preço Unitário (R$)</label>
+                        <input type="number" class="form-control" id="precoOperacao" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataOperacao" class="form-label">Data da Operação</label>
+                        <input type="date" class="form-control" id="dataOperacao" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taxasOperacao" class="form-label">Taxas/Custos (R$)</label>
+                        <input type="number" class="form-control" id="taxasOperacao" step="0.01" min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="observacaoOperacao" class="form-label">Observação</label>
+                        <textarea class="form-control" id="observacaoOperacao" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarOperacao">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

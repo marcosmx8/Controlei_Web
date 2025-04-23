@@ -1,0 +1,195 @@
+<!-- Seção de Relatórios -->
+<div id="relatorios" class="content-section">
+    <h2>Relatórios</h2>
+    
+    <!-- Filtros -->
+    <div class="filter-section row mb-4">
+        <div class="col-md-3">
+            <label for="filtroTipoRelatorio" class="form-label">Tipo de Relatório</label>
+            <select class="form-select" id="filtroTipoRelatorio">
+                <option value="despesas_categoria" selected>Despesas por Categoria</option>
+                <option value="evolucao_financeira">Evolução Financeira</option>
+                <option value="cartao_credito">Cartão de Crédito</option>
+                <option value="investimentos">Investimentos</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroPeriodoRelatorio" class="form-label">Período</label>
+            <select class="form-select" id="filtroPeriodoRelatorio">
+                <option value="mes_atual">Mês Atual</option>
+                <option value="mes_anterior">Mês Anterior</option>
+                <option value="ultimos_3_meses" selected>Últimos 3 Meses</option>
+                <option value="ultimos_6_meses">Últimos 6 Meses</option>
+                <option value="ano_atual">Ano Atual</option>
+                <option value="ano_anterior">Ano Anterior</option>
+                <option value="personalizado">Personalizado</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroDataInicioRelatorio" class="form-label">Data Início</label>
+            <input type="date" class="form-control" id="filtroDataInicioRelatorio" disabled>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroDataFimRelatorio" class="form-label">Data Fim</label>
+            <input type="date" class="form-control" id="filtroDataFimRelatorio" disabled>
+        </div>
+    </div>
+    
+    <!-- Botões de Exportação -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <button class="btn btn-primary btn-export-report" data-format="pdf" data-report="current">
+                <i class="bi bi-file-pdf"></i> Exportar como PDF
+            </button>
+            <button class="btn btn-outline-primary btn-export-report" data-format="excel" data-report="current">
+                <i class="bi bi-file-excel"></i> Exportar como Excel
+            </button>
+            <button class="btn btn-outline-secondary" id="btnGerarRelatorio">
+                <i class="bi bi-arrow-repeat"></i> Atualizar Relatório
+            </button>
+        </div>
+    </div>
+    
+    <!-- Conteúdo do Relatório -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" id="tituloRelatorio">Despesas por Categoria - Últimos 3 Meses</h5>
+                    
+                    <!-- Resumo do Relatório -->
+                    <div class="row mb-4" id="resumoRelatorio">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total de Despesas</h5>
+                                    <h2 class="card-value text-danger">R$ 9.350,00</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Maior Categoria</h5>
+                                    <h2 class="card-value">Moradia</h2>
+                                    <p class="card-text">R$ 3.600,00 (38,5%)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Média Mensal</h5>
+                                    <h2 class="card-value">R$ 3.116,67</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tendência</h5>
+                                    <h2 class="card-value text-success"><i class="bi bi-arrow-down"></i> -5,2%</h2>
+                                    <p class="card-text">Em relação ao período anterior</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gráficos do Relatório -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <canvas id="relatorioGrafico1"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <canvas id="relatorioGrafico2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabela de Detalhes -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Detalhamento</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Categoria</th>
+                                            <th>Fevereiro</th>
+                                            <th>Março</th>
+                                            <th>Abril</th>
+                                            <th>Total</th>
+                                            <th>Média</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Moradia</td>
+                                            <td>R$ 1.200,00</td>
+                                            <td>R$ 1.200,00</td>
+                                            <td>R$ 1.200,00</td>
+                                            <td>R$ 3.600,00</td>
+                                            <td>R$ 1.200,00</td>
+                                            <td>38,5%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alimentação</td>
+                                            <td>R$ 950,00</td>
+                                            <td>R$ 850,00</td>
+                                            <td>R$ 850,00</td>
+                                            <td>R$ 2.650,00</td>
+                                            <td>R$ 883,33</td>
+                                            <td>28,3%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Transporte</td>
+                                            <td>R$ 500,00</td>
+                                            <td>R$ 450,00</td>
+                                            <td>R$ 450,00</td>
+                                            <td>R$ 1.400,00</td>
+                                            <td>R$ 466,67</td>
+                                            <td>15,0%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saúde</td>
+                                            <td>R$ 350,00</td>
+                                            <td>R$ 320,00</td>
+                                            <td>R$ 320,00</td>
+                                            <td>R$ 990,00</td>
+                                            <td>R$ 330,00</td>
+                                            <td>10,6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lazer</td>
+                                            <td>R$ 250,00</td>
+                                            <td>R$ 280,00</td>
+                                            <td>R$ 180,00</td>
+                                            <td>R$ 710,00</td>
+                                            <td>R$ 236,67</td>
+                                            <td>7,6%</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="table-active">
+                                            <th>Total</th>
+                                            <th>R$ 3.250,00</th>
+                                            <th>R$ 3.100,00</th>
+                                            <th>R$ 3.000,00</th>
+                                            <th>R$ 9.350,00</th>
+                                            <th>R$ 3.116,67</th>
+                                            <th>100%</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

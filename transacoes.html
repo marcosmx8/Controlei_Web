@@ -1,0 +1,311 @@
+<!-- Seção de Transações com sistema de categorias expansíveis -->
+<div id="transacoes" class="content-section">
+    <h2>Transações</h2>
+    
+    <!-- Filtros -->
+    <div class="filter-section row mb-4">
+        <div class="col-md-3">
+            <label for="filtroMes" class="form-label">Mês</label>
+            <select class="form-select" id="filtroMes">
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4" selected>Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroAno" class="form-label">Ano</label>
+            <select class="form-select" id="filtroAno">
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025" selected>2025</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroTipo" class="form-label">Tipo</label>
+            <select class="form-select" id="filtroTipo">
+                <option value="todos" selected>Todos</option>
+                <option value="receita">Receitas</option>
+                <option value="despesa">Despesas</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroCategoria" class="form-label">Categoria</label>
+            <select class="form-select" id="filtroCategoria">
+                <option value="todas" selected>Todas</option>
+                <option value="moradia">Moradia</option>
+                <option value="alimentacao">Alimentação</option>
+                <option value="transporte">Transporte</option>
+                <option value="saude">Saúde</option>
+                <option value="lazer">Lazer</option>
+                <option value="educacao">Educação</option>
+                <option value="renda">Renda</option>
+                <option value="outros">Outros</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Botão para adicionar nova transação -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaTransacao">
+                <i class="bi bi-plus-circle"></i> Nova Transação
+            </button>
+        </div>
+    </div>
+    
+    <!-- Resumo do mês -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Receitas</h5>
+                    <h2 class="card-value text-success">R$ 8.500,00</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Despesas</h5>
+                    <h2 class="card-value text-danger">R$ 3.250,00</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Saldo</h5>
+                    <h2 class="card-value text-primary">R$ 5.250,00</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráfico de despesas por categoria -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Despesas por Categoria</h5>
+                    <div class="chart-container">
+                        <canvas id="transacoesCategoriaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lista de categorias expansíveis -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Transações por Categoria</h5>
+                    
+                    <!-- Categoria Moradia -->
+                    <div class="category-item" data-category="moradia">
+                        <div class="category-header">
+                            <div>
+                                <i class="bi bi-house"></i> Moradia
+                            </div>
+                            <div>
+                                <span class="badge bg-danger">R$ 1.200,00</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="category-details">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Descrição</th>
+                                            <th>Valor</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>05/04/2025</td>
+                                            <td>Aluguel</td>
+                                            <td>R$ 850,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>15/04/2025</td>
+                                            <td>Conta de Luz</td>
+                                            <td>R$ 180,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>05/04/2025</td>
+                                            <td>Internet</td>
+                                            <td>R$ 150,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/04/2025</td>
+                                            <td>Água</td>
+                                            <td>R$ 120,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Categoria Alimentação -->
+                    <div class="category-item" data-category="alimentacao">
+                        <div class="category-header">
+                            <div>
+                                <i class="bi bi-cart"></i> Alimentação
+                            </div>
+                            <div>
+                                <span class="badge bg-danger">R$ 850,00</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="category-details">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Descrição</th>
+                                            <th>Valor</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>20/04/2025</td>
+                                            <td>Supermercado</td>
+                                            <td>R$ 350,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>10/04/2025</td>
+                                            <td>Restaurante</td>
+                                            <td>R$ 120,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>15/04/2025</td>
+                                            <td>Delivery</td>
+                                            <td>R$ 80,00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outras categorias seriam adicionadas de forma similar -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Nova Transação -->
+<div class="modal fade" id="modalNovaTransacao" tabindex="-1" aria-labelledby="modalNovaTransacaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNovaTransacaoLabel">Nova Transação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNovaTransacao">
+                    <div class="mb-3">
+                        <label for="tipoTransacao" class="form-label">Tipo</label>
+                        <select class="form-select" id="tipoTransacao" required>
+                            <option value="">Selecione...</option>
+                            <option value="receita">Receita</option>
+                            <option value="despesa">Despesa</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricaoTransacao" class="form-label">Descrição</label>
+                        <input type="text" class="form-control" id="descricaoTransacao" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="valorTransacao" class="form-label">Valor (R$)</label>
+                        <input type="number" class="form-control" id="valorTransacao" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataTransacao" class="form-label">Data</label>
+                        <input type="date" class="form-control" id="dataTransacao" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoriaTransacao" class="form-label">Categoria</label>
+                        <select class="form-select" id="categoriaTransacao" required>
+                            <option value="">Selecione...</option>
+                            <option value="moradia">Moradia</option>
+                            <option value="alimentacao">Alimentação</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="saude">Saúde</option>
+                            <option value="lazer">Lazer</option>
+                            <option value="educacao">Educação</option>
+                            <option value="renda">Renda</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="metodoPagamento" class="form-label">Método de Pagamento</label>
+                        <select class="form-select" id="metodoPagamento">
+                            <option value="">Selecione...</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="debito">Cartão de Débito</option>
+                            <option value="credito">Cartão de Crédito</option>
+                            <option value="pix">PIX</option>
+                            <option value="transferencia">Transferência</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="observacaoTransacao" class="form-label">Observação</label>
+                        <textarea class="form-control" id="observacaoTransacao" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarTransacao">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
