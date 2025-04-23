@@ -1,0 +1,20 @@
+
+.graficos-container {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.grafico-box {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 50%;
+}
+.grafico-box h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
